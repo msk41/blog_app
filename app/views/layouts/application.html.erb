@@ -1,14 +1,36 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>BlogApp</title>
-    <%= csrf_meta_tags %>
+<head>
+  <title>BlogApp</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+<section class="billboard light">
+  <header class="wrapper light">
+    <a href="/"><img class="logo" src="/assets/logo_light.png" alt=""/></a>
+    <nav>
+      <ul>
+        <li><a href="">About Me</a></li>
+        <li><a href="">Blogs</a></li>
+        <li><a href="">Category</a></li>
+      </ul>
+    </nav>
+  </header>
 
-  <body>
-    <%= yield %>
-  </body>
+  <div class="caption light">
+    <h1>Welcome to  my page!</h1>
+    <p>dolore magna aliqua enim ad minim veniam occaecat</p>
+  </div>
+</section><!--  End billboard  -->
+
+<body>
+
+<p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>
+
+<%= yield %>
+
+</body>
 </html>
