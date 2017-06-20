@@ -1,7 +1,13 @@
 class PostsController < ApplicationController
+  before_action :admin_user, only: [:admin, :new, :create, :edit, :update, :destroy]
+  before_action :make_archive
+
+  def admin
+    @posts = Post.order("created_at DESC").paginate(page: params[:page])
+  end
 
   def index
-    @posts = Post.order("created_at DESC")
+    @posts = Post.order("created_at DESC").paginate(page: params[:page])
   end
 
   def show
@@ -48,9 +54,28 @@ class PostsController < ApplicationController
     @posts = Post.where('title LIKE(?)', "%#{params[:keyword]}%").limit(20)
   end
 
+  # 年月のパラメータを受け取って、投稿を絞る
+  def archives
+    @yyyymm_now = params[:yyyymm]
+    @posts = Post.where("strftime('%Y%m', posts.updated_at) = '"+ @yyyymm_now +"' ").order(:id).paginate(page: params[:page])
+  end
+
   private
 
     def post_params
       params.require(:post).permit(:image, :title, :text)
     end
+
+    # beforeアクション
+
+    # 管理者かどうか確認
+    def admin_user
+      redirect_to(root_url) unless current_user.admin?
+    end
+
+    # アーカイブを集計
+    def make_archive
+      @archives = Post.group("strftime('%Y%m', posts.updated_at)").order("strftime('%Y%m', posts.updated_at) desc").count
+    end
 end
+

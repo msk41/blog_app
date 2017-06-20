@@ -1,0 +1,17 @@
+<section class="billboard light">
+  <header class="wrapper light">
+    <a href="/"><img class="logo" src="/assets/logo_light.png" alt=""/></a>
+    <nav>
+      <ul>
+        <li><%= link_to "About Me", about_path %></li>
+        <% if logged_in? %>
+          <li><%= link_to "Log Out", logout_path, method: "delete" %></li>
+        <% end %>
+      </ul>
+    </nav>
+  </header>
+  <div class="caption light">
+    <h1>Welcome to  my page!</h1>
+    <p>dolore magna aliqua enim ad minim veniam occaecat</p>
+  </div>
+</section><!--  End billboard  -->

@@ -1,0 +1,16 @@
+<div class="sidemenu">
+  <aside class="search">
+    <%= form_tag('/posts/search', method: :get) do %>
+      <input name="keyword" type="text"></input>
+      <input type="submit" value="検索"></input>
+    <% end %>
+  </aside>
+  <aside class="archive">
+    <h3>アーカイブ</h3>
+    <ul>
+      <% @archives.each do |yyyymm, count| %>
+        <%= link_to ymconvert(yyyymm, count.to_s), "posts/archives?yyyymm=#{yyyymm[0,6]}" %>
+      <% end %>
+    </ul>
+  </aside>
+</div>

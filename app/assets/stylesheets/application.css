@@ -53,7 +53,7 @@ h5, h6          { font-weight: bolder }
 }
 
 .billboard.light{
-    background: url('/assets/billboard.jpg') no-repeat;
+    background: url('/assets/rising_sun.jpg') no-repeat;
     background-size: cover;
     -webkit-background-size: cover;
     -moz-background-size: cover;

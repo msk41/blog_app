@@ -1,0 +1,30 @@
+<div class="row">
+  <div class="col-xs-9">
+    <div class="posts">
+      <h1><%= ymconvert_view(@yyyymm_now) %>の投稿一覧</h1>
+      <% if @posts.count == 0 %>
+        <p><%= ymconvert_view(@yyyymm_now) %> の投稿はありません</p>
+      <% else %>
+        <% @posts.each do |post| %>
+        <div class="posts-image">
+          <%= link_to image_tag(post.image, :alt => "", :width => "830", :height => "553"), post %>
+        </div>
+        <div class="posts-header">
+          <h2><%= link_to post.title, post %></h2>
+          <div class="posts-meta">
+            <span class="posted_time">Posted on <time><%= post.created_at.strftime('%Y年%m月%d日')%></time></span>
+            <%= link_to 'Leave a comment', post_path(post, :anchor => 'comment-post') %>
+          </div>
+        </div>
+        <div class="posts-content">
+          <%= truncate(post.text) %><hr>
+        </div>
+        <% end %>
+      <% end %>
+      <%= will_paginate %>
+    </div>
+  </div>
+  <div class="col-xs-3">
+    <%= render 'layouts/sidemenu' %>
+  </div>
+</div>

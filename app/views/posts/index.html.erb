@@ -1,46 +1,27 @@
-<div class="row">
+<%= render 'layouts/header' %>
 
+<div class="row">
   <div class="col-xs-9">
     <div class="posts">
       <% @posts.each do |post| %>
       <div class="posts-image">
-        <%= link_to image_tag(post.image, :alt => "", :width => "830", :height => "553"), "/posts/#{post.id}", method: :get %>
+        <%= link_to image_tag(post.image, :alt => "", :width => "830", :height => "553"), post %>
       </div>
       <div class="posts-header">
-        <h2><%= link_to post.title, "/posts/#{post.id}", method: :get %></h2>
-          <%= link_to "edit", edit_post_path(post) %>
-          <%= link_to "delete", post, method: :delete,
-                                      data: { confirm: "You sure?" } %>
+        <h2><%= link_to post.title, post %></h2>
         <div class="posts-meta">
           <span class="posted_time">Posted on <time><%= post.created_at.strftime('%Y年%m月%d日')%></time></span>
-          <%= link_to 'Leave a comment', post_path(post.id, :anchor => 'comment-post'), method: :get %>
+          <%= link_to 'Leave a comment', post_path(post, :anchor => 'comment-post') %>
         </div>
       </div>
       <div class="posts-content">
         <%= truncate(post.text) %><hr>
       </div>
       <% end %>
+      <%= will_paginate %>
     </div>
   </div>
-
   <div class="col-xs-3">
-    <div class="sidemenu">
-      <aside class="search">
-        <%= form_tag('/posts/search', method: :get) do %>
-          <input name="keyword" type="text"></input>
-          <input type="submit" value="検索"></input>
-        <% end %>
-      </aside>
-      <aside class="archive">
-        <h3>アーカイブ</h3>
-        <ul>
-          <li><a href='https://hiroono.com/ja/2017/05/'>2017年5月</a></li>
-          <li><a href='https://hiroono.com/ja/2017/05/'>2017年5月</a></li>
-          <li><a href='https://hiroono.com/ja/2017/05/'>2017年5月</a></li>
-          <li><a href='https://hiroono.com/ja/2017/05/'>2017年5月</a></li>
-        </ul>
-      </aside>
-    </div>
+    <%= render 'layouts/sidemenu' %>
   </div>
-
 </div>

@@ -1,9 +1,8 @@
 <div class="row">
-
   <div class="col-xs-9">
     <div class="posts">
       <div class="posts-image">
-        <a href="/posts/#{@post.id}" title="@post.title"><img width="830" height="553" src="<%= @post.image %>" alt=""/></a>
+        <img width="830" height="553" src="<%= @post.image %>" alt=""/>
       </div>
       <div class="posts-header">
         <h2><%= @post.title %></h2>
@@ -16,11 +15,11 @@
       </div>
     </div>
     <div id="comment-post">
-      <%= form_tag("/posts/#{@post.id}/comments", method: :post) do %>
-        <label for="comment">コメント</label><br>
-        <textarea cols="110" name="text" placeholder="コメントする" rows="5"></textarea><br>
+      <%= form_tag(post_comments_path(@post), method: :post) do %>
+        <label for="comment">コメント *</label><br>
+        <textarea cols="110" rows="5" name="text" ></textarea><br>
         <label for="name">名前 *</label><br>
-        <textarea cols="110" name="name" rows="1" required="true"></textarea><br>
+        <textarea cols="110" rows="1" name="name" required="true"></textarea><br>
         <input type="submit" value="送信">
       <% end %>
       <div class="comments">
@@ -35,28 +34,23 @@
       </div>
     </div>
   </div>
-
   <div class="col-xs-3">
     <div class="sidemenu">
       <aside class="search">
-        <form role="search" method="get" class="search-form" action="https://hiroono.com/ja/">
-          <label>
-            <span>検索:</span>
-            <input type="search" class="search-field" placeholder="検索" value="" name="" />
-          </label>
-        <input type="submit" value="検索" />
-      </form>
+        <%= form_tag('/posts/search', method: :get) do %>
+          <input name="keyword" type="text"></input>
+          <input type="submit" value="検索"></input>
+        <% end %>
       </aside>
       <aside class="archive">
         <h3>アーカイブ</h3>
         <ul>
-          <li><a href='https://hiroono.com/ja/2017/05/'>2017年5月</a></li>
-          <li><a href='https://hiroono.com/ja/2017/05/'>2017年5月</a></li>
-          <li><a href='https://hiroono.com/ja/2017/05/'>2017年5月</a></li>
-          <li><a href='https://hiroono.com/ja/2017/05/'>2017年5月</a></li>
+          <% @archives.each do |yyyymm, count| %>
+            <%= link_to ymconvert(yyyymm, count.to_s), "archives?yyyymm=#{yyyymm[0,6]}" %>
+          <% end %>
         </ul>
       </aside>
     </div>
   </div>
-
 </div>
+
