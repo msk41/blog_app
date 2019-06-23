@@ -1,22 +1,15 @@
-# README
+# Blog App
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is blog app that an owner can add posts and viewers can leave comments.
 
-Things you may want to cover:
+## Features
 
-* Ruby version
+This app has functions below.
 
-* System dependencies
+* search posts
+* monthly classification
 
-* Configuration
+### Version
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
+* Ruby 2.3.1
+* Ruby on Rails 4
