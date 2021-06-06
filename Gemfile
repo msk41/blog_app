@@ -1,11 +1,11 @@
 source 'https://rubygems.org'
 
-gem 'rails',        '5.0.0.1'
+gem 'rails',        '5.0.7.2'
 gem 'bcrypt',         '3.1.11'
 gem 'will_paginate',           '3.1.0'
 gem 'bootstrap-will_paginate', '0.0.10'
 gem 'bootstrap-sass', '3.4.1'
-gem 'puma',         '3.12.6'
+gem 'puma',         '5.3.2'
 gem 'sass-rails',   '5.0.6'
 gem 'uglifier',     '3.0.0'
 gem 'coffee-rails', '4.2.1'
